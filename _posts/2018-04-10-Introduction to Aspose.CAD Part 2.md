@@ -9,18 +9,18 @@ If you're willing to use full version of <a href="https://products.aspose.com/ca
 
 There are two types of licenses, one is a traditional license file that is paid upfront, and another is a pay-per-use service key license, called Metered license. Let's dive a little deeper.
 
-##License file
+## License file
 This one is very simple to implement. Just include these lines in your project somewhere:
-````csharp
+```csharp
             License license = new Aspose.CAD.License();
 			// Pass path to license file
             license.SetLicense("Aspose.CAD.lic");
 ```
 After execution of these lines your Aspose.CAD libary will work in licensed mode, no file complexity limit, no watermark. As such, you'd probably want to put these lines somewhere within your software's startup code, before any other use of Aspose.CAD. <a href="https://apireference.aspose.com/net/cad/aspose.cad/license/methods/setlicense/index">SetLicense</a> also accepts <a href="https://msdn.microsoft.com/en-us/library/system.io.filestream(v=vs.110).aspx">FileStream</a>, so you can perform IO in code that's separate from license setup.
 
-##Metered license
+## Metered license
 This is a license that measures amount of use of the Aspose.CAD libary, and syncs with Aspose licensing service to perform billing on per-use basis. It also lets you measure the registered amount of use. Everything is done via a static <a href="https://apireference.aspose.com/net/cad/aspose.cad/metered">Metered</a> class Take a look:
-````csharp
+```csharp
             // Set public and private keys in Metered class
             Aspose.CAD.Metered.SetMeteredKey("*****", "*****");
 
