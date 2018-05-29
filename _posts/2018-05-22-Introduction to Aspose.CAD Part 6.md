@@ -35,7 +35,7 @@ using (RasterImage image = (RasterImage)Image.Load("aspose-logo.jpg"))
     image.Rotate(20f, true, Color.Red);
     image.Save( "RotatingImageOnSpecificAngle_out.jpg");
 }
-```
+````
 So you just have to specify rotation angle (clockwise), wether the new image should be resized to fit the rotated content, and what to fill "uncovered" areas with.
 
 ##Composing multi-frame TIFFs
@@ -90,7 +90,7 @@ finally
     output.Dispose();
 }
 
-```
+````
 Do note that images are only really added to the TIFF image on the <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/image/methods/save/index">Save</a> call, so you should take care not to dispose them before. Here we create copies of the frames anyway.
 To remove a frame from TIFF image, call <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.tiff.tiffimage/removeframe/methods/1">RemoveFrame</a> with index of frame to remove.
 
@@ -117,7 +117,7 @@ using (GifImage gif = (GifImage)objImage)
         gifBlock.Save("sample_frame_"  + i + "_out.tif", objTiff);
     }
 }
-``` 
+````
 
 
 That's all for now, stay tuned!
