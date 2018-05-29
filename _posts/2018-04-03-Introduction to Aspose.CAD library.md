@@ -23,7 +23,7 @@ The process would consist of three main steps:
 
 ### Load CAD file
 First step is very straightforward. Just call the static <a href="https://apireference.aspose.com/net/cad/aspose.cad.image/load/methods/2">Load</a> method of <a href="https://apireference.aspose.com/net/cad/aspose.cad/image">Image</a> class passing the file path to it:
-````csharp
+```csharp
 
             string dwgPathToFile =  "files/cad.dwg";
             Image cadImage1 = Image.Load(dwgPathToFile);
@@ -34,7 +34,7 @@ Now I'll skip to the third step, as it's equally simple, and then return to the 
 
 ### Save the image
 Call the <a href="https://apireference.aspose.com/net/cad/aspose.cad.image/save/methods/3">Save</a> method on your loaded Image, passing file path to save and <a href="https://apireference.aspose.com/net/cad/aspose.cad/imageoptionsbase">ImageOptionsBase</a> object and it's done.
-````csharp
+```csharp
                 cadImage1.Save("cad.pdf", pdfOptions);
 
 ```
@@ -46,7 +46,7 @@ This is where the main work is done from library user's standpoint. You select t
 There are the following subclasses of ImageOptionsBase:
 <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/pdfoptions">PdfOptions</a>, <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/bmpoptions">BmpOptions</a>, <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/gifoptions">GifOptions</a>, <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/jpegoptions">JpegOptions</a>,<a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/pngoptions">PngOptions</a>, <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/psdoptions">PsdOptions</a>, <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/tiffoptions">TiffOptions</a> and some <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/">more</a>. Each provides setup for corresponding output file format. Then set it up by setting its properties and then pass it to the third step. 
 The most important property would be <a href="https://apireference.aspose.com/net/cad/aspose.cad/imageoptionsbase/properties/vectorrasterizationoptions">VectorRasterizationOptions</a> property, which we should set with an instance of <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/cadrasterizationoptions">CadRasterizationOptions</a> class. This class specifies how your CAD image should be rendered - width, height in pixels, wether CAD content should be centered, background color and override color for objects, etc. In its simplest form this step could be done the following way:
-````csharp
+```csharp
 
                 PdfOptions pdfOptions = new PdfOptions();
                 CadRasterizationOptions rasterizationOptions= new CadRasterizationOptions();
@@ -63,7 +63,7 @@ After this setup, we're ready for step three.
 Now you know how to export a CAD file to an raster image or PDF file using Aspose.CAD for .NET. <a href="https://products.aspose.com/cad/java">Java</a> version of Aspose.CAD is essentially identical as well.
 
 Here's the complete example:
-````csharp
+```csharp
 using System;
 using System.Collections.Generic;
 using Aspose.CAD;
@@ -100,7 +100,7 @@ Just create a new console application, copy the example content into Program.cs,
 
 ## Rotating and flipping image
 With Aspose.CAD it's very easy to export CAD image not only as it is, but in rotated or mirriored form. Just get back to the second step of the first part, and tweak it a little:
-````csharp
+```csharp
 
                 PdfOptions pdfOptions = new PdfOptions();
                 //Here it is, the rotation and flip!
