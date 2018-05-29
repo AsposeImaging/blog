@@ -21,6 +21,7 @@ Here are links to previous parts:
 
 
 ##Simple rotation.
+
 In addition to transformation matrix-based rotation, there is also a helper method to allow for easy rotation in <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a>. The method works on <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/rasterimage">RasterImage</a> and its descendants. 
 ````csharp
 // Load an image to be rotated in an instance of RasterImage
@@ -39,6 +40,7 @@ using (RasterImage image = (RasterImage)Image.Load("aspose-logo.jpg"))
 So you just have to specify rotation angle (clockwise), wether the new image should be resized to fit the rotated content, and what to fill "uncovered" areas with.
 
 ##Composing multi-frame TIFFs
+
 This is actually also very simple, though the example will be longer. TIFF files allow several properties to be specified, the <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.imageoptions/tiffoptions/properties/bitspersample">BitsPerSample</a> property - array specifying number of bits per each channel of a pixel, <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.imageoptions/tiffoptions/properties/orientation">Orientation</a> property - obvious, <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.imageoptions/tiffoptions/properties/photometric">Photometric</a> property - specifies a value that defines color interpretation properties of a TIFF - response curves etc., <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.imageoptions/tiffoptions/properties/compression">Compression</a> property - obvious - and <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.imageoptions/tiffoptions/properties/fillorder">FillOrder</a> - endianness - property are specified in this example.
 ````csharp
 List<string> files = new List<string>(new[] {  "Frame1.tiff", "Frame2.tiff" });
@@ -95,6 +97,7 @@ Do note that images are only really added to the TIFF image on the <a href="http
 To remove a frame from TIFF image, call <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.tiff.tiffimage/removeframe/methods/1">RemoveFrame</a> with index of frame to remove.
 
 ##Saving a frame from multi-frame GIF
+
 This is also quite simple to do, but the terminology is a bit different - here, frames are put in blocks, which are represented as objects implementing <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.gif/igifblock">IGifBlock</a> interface. Blocks can be added via <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.gif/gifimage/methods/addblock">AddBlock</a> and removed via <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.gif/gifimage/methods/removeblock">RemoveBlock</a>. To add an image as a block you just create a new <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.gif.blocks/gifframeblock">GifFrameBlock</a> passing image to the constructor. There are also other kinds of blocks. Consequently, here's how you can access them:
 ````csharp
 Image objImage = Image.Load("sample.gif");
