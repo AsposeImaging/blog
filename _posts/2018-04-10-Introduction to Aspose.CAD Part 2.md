@@ -7,6 +7,11 @@ tags: csharp, cad, convert, export
 
 If you're willing to use full version of <a href="https://products.aspose.com/cad/">Aspose.CAD</a> API, you'll need to apply your license in your software that uses Aspose.CAD library. In this article I'll show how to do this. It's simple!
 
+
+Here is the previous article:
+
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-library/">Part 1</a>
+
 There are two types of licenses, one is a traditional license file that is paid upfront, and another is a pay-per-use service key license, called Metered license. Let's dive a little deeper.
 
 ## License file
