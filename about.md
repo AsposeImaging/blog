@@ -12,4 +12,4 @@ Aspose.CAD is a native API and does not require AutoCAD or any other software to
 
 ### Contact us
 
-[https://forum.aspose.com/](mailto:email@domain.com)
+[Our support forums](https://forum.aspose.com/)
