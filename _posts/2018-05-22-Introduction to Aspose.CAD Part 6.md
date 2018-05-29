@@ -1,11 +1,13 @@
 ---
 title: Introduction to Aspose.Imaging, Part 6
-description: 
+layout: post
 tags: csharp, raster, image, convert
 ---
 
 
+In this part I'll tell you about an easier way to rotate an image,  how to create multipage TIFFs and how to extract separate frames from an animated GIF file.
 
+Here are links to previous parts:
 
 <a href="https://dev.to/nnevod/introduction-to-asposeimaging-8jd">Part 1</a>
 
@@ -17,7 +19,6 @@ tags: csharp, raster, image, convert
 
 <a href="https://dev.to/nnevod/introduction-to-asposeimaging-part-5-1349">Part 5</a>
 
-In this part I'll tell you about an easier way to rotate an image,  how to create multipage TIFFs and how to extract separate frames from an animated GIF file.
 
 ##Simple rotation.
 In addition to transformation matrix-based rotation, there is also a helper method to allow for easy rotation in <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a>. The method works on <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/rasterimage">RasterImage</a> and its descendants. 
