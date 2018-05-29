@@ -4,11 +4,15 @@ layout: post
 tags: csharp, cad, convert, export
 ---
 
+
+Most cases when <a href="https://products.aspose.com/cad/">Aspose.CAD</a> has to be used are probably associated with AutoCAD's files, such as DWG and DXF format. As such, I'm going to describe how can Aspose.CAD work with DWG and DXF formats.
+
+Here are the previous articles:
+
 <a href="https://dev.to/nnevod/introduction-to-asposecad-library-361h">Part 1</a>
 <a href="https://dev.to/nnevod/introduction-to-asposecad-part-2-2kgf">Part 2</a>
 
 
-Most cases when <a href="https://products.aspose.com/cad/">Aspose.CAD</a> has to be used are probably associated with AutoCAD's files, such as DWG and DXF format. As such, I'm going to describe how can Aspose.CAD work with DWG and DXF formats.
 
 Let's start from a simple and common thing: selection of particular layout or layer. Aspose.CAD supports enumeration of both layers and layouts and selection of one or several particular layers or layouts for export. Let's see!
 
