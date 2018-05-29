@@ -7,15 +7,15 @@ tags: csharp, cad, convert
 
 Here are the previous articles:
 
-<a href="https://dev.to/nnevod/introduction-to-asposecad-library-361h">Part 1</a>
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-library/">Part 1</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposecad-part-2-2kgf">Part 2</a>
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-Part-2/">Part 2</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposecad-part-3-1mhf">Part 3</a>
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-Part-3">Part 3</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposecad-part-4-ma8">Part 4</a>
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-Part-4">Part 4</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposecad-part-5-4ff6">Part 5</a>
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-Part-5">Part 5</a>
 
 
 
