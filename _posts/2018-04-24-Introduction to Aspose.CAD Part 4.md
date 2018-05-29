@@ -15,10 +15,6 @@ Here are the previous articles:
 
 <a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-Part-3">Part 3</a>
 
-<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-Part-4">Part 4</a>
-
-<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-Part-5">Part 5</a>
-
 ## Iterating over entities and blocks
 The DWG\DXF specific <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad/cadimage">CadImage</a> class has an <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad/cadimage/properties/entities">Entities</a> property, which contains all entities of the file. Blocks, which are specific for DWG format, are put as instances of <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad.cadobjects/cadblockentity">CadBlockEntity</a> into a <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad/cadblockdictionary">CadBlockDictionary</a> instance that is accessible via <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad/cadimage/properties/blockentities">BlockEntities</a> property of a CadImage. Block names are used as keys in the dictionary, so blocks are accessible by their names. Entities of a specific block can be accessed via <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad.cadobjects/cadblockentity/properties/entities">Entities</a> propery of CadBlockEntity.
 ```csharp
