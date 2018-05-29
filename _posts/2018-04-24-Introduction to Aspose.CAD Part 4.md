@@ -4,9 +4,6 @@ layout: post
 tags: csharp, cad, convert
 ---
 
-
-Introduction to Aspose.CAD, Part 4
-
 In this part I will continue to describe <a href="https://products.aspose.com/cad/">Aspose.CAD</a> features specific to DWG\DXF files, as these file formats are the most common use for Aspose.CAD.
 
 ## Iterating over entities and blocks
