@@ -6,15 +6,16 @@ tags: charp, cad, convert, file
 
 In this part I will again continue to describe <a href="https://products.aspose.com/cad/">Aspose.CAD</a> features specific to DWG\DXF files, as these file formats are the most common use for Aspose.CAD.
 
-Here are the previous parts:
 
-<a href="https://dev.to/nnevod/introduction-to-asposecad-library-361h">Part 1</a>
+Here are the previous articles:
 
-<a href="https://dev.to/nnevod/introduction-to-asposecad-part-2-2kgf">Part 2</a>
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-library/">Part 1</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposecad-part-3-1mhf">Part 3</a>
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-Part-2/">Part 2</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposecad-part-4-ma8">Part 4</a>
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-Part-3">Part 3</a>
+
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-Part-4">Part 4</a>
 
 
 ## Export of 3D objects
