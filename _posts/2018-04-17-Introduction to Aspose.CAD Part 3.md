@@ -7,10 +7,12 @@ tags: csharp, cad, convert, export
 
 Most cases when <a href="https://products.aspose.com/cad/">Aspose.CAD</a> has to be used are probably associated with AutoCAD's files, such as DWG and DXF format. As such, I'm going to describe how can Aspose.CAD work with DWG and DXF formats.
 
+
 Here are the previous articles:
 
-<a href="https://dev.to/nnevod/introduction-to-asposecad-library-361h">Part 1</a>
-<a href="https://dev.to/nnevod/introduction-to-asposecad-part-2-2kgf">Part 2</a>
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-library/">Part 1</a>
+
+<a href="https://asposecad.github.io/Introduction-to-Aspose.CAD-Part-2/">Part 2</a>
 
 
 
