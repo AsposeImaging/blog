@@ -10,11 +10,12 @@ In this article I will describe one of the most important features of <a href="h
 
 Here are the previous articles:
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-8jd">Part 1</a>
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging/">Part 1</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-part-2-40p">Part 2</a>
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging,-Part-2/">Part 2</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-part-3-3ah3">Part 3</a>
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging,-Part-3/">Part 3</a>
+
 
 ## Filtering images
 Applying a filter to image is very simple, just create a descendant of <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.imagefilters.filteroptions/filteroptionsbase">FilterOptionsBase</a> and pass it to <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/rasterimage">RasterImage</a>'s <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/rasterimage/methods/filter">Filter</a> method:
