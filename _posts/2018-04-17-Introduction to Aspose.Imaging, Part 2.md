@@ -6,7 +6,10 @@ tags: csharp, raster, image, convert
 
 In this part I continue to write about more generic features of <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-8jd">Part 1</a>
+Here is the previous article:
+
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging/">Part 1</a>
+
 
 
 ## Drawing an image onto another image
