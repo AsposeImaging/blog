@@ -8,6 +8,12 @@ tags: csharp, image, raster, modify
 
 Here I will talk about how to use <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a> the most common ways of modifying raster images: ajdustment of brightness, contrast and gamma, considered 'common' adjustments for raster images, cropping and resizing an image and dithering and binarization  often done when preparing images for printing.
 
+Here are the previous articles:
+
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging/">Part 1</a>
+
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging,-Part-2/">Part 2</a>
+
 ## Brightness, contrast and gamma.
 These are performed by one-line command and are very similar in nature, so I will provide an example that does all of them:
 ```csharp
