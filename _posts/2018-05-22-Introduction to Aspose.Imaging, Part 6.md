@@ -6,17 +6,17 @@ tags: csharp, raster, image, convert
 
 In this part I'll tell you about an easier way to rotate an image,  how to create multipage TIFFs and how to extract separate frames from an animated GIF file.
 
+Here are the previous articles:
 
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging/">Part 1</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-8jd">Part 1</a>
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging,-Part-2/">Part 2</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-part-2-40p">Part 2</a>
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging,-Part-3/">Part 3</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-part-3-3ah3">Part 3</a>
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging,-Part-4/">Part 4</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-part-4-2o1j">Part 4</a>
-
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-part-5-1349">Part 5</a>
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging,-Part-5/">Part 5</a>
 
 
 ## Simple rotation.
