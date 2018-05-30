@@ -1,107 +1,135 @@
 ---
-title: Introduction to Aspose.CAD, Part 3
+title: Introduction to Aspose.Imaging, Part 3
 layout: post
-tags: csharp, cad, convert, export
+tags: csharp, image, raster, modify
 ---
 
-Most cases when <a href="https://products.aspose.com/cad/">Aspose.CAD</a> has to be used are probably associated with AutoCAD's files, such as DWG and DXF format. As such, I'm going to describe how can Aspose.CAD work with DWG and DXF formats.
-
-Here are the previous articles:
-
-<a href="https://dev.to/nnevod/introduction-to-asposecad-library-361h">Part 1</a>
-
-<a href="https://dev.to/nnevod/introduction-to-asposecad-part-2-2kgf">Part 2</a>
 
 
+Here I will talk about how to use <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a> the most common ways of modifying raster images: ajdustment of brightness, contrast and gamma, considered 'common' adjustments for raster images, cropping and resizing an image and dithering and binarization  often done when preparing images for printing.
 
-Let's start from a simple and common thing: selection of particular layout or layer. Aspose.CAD supports enumeration of both layers and layouts and selection of one or several particular layers or layouts for export. Let's see!
-
-## Getting a list of layout names
-Take look at this snippet:
+## Brightness, contrast and gamma.
+These are performed by one-line command and are very similar in nature, so I will provide an example that does all of them:
 ```csharp
-            using (Aspose.CAD.Image image = Aspose.CAD.Image.Load(sourceFilePath))
-            {
-                Aspose.CAD.FileFormats.Cad.CadImage cadImage = (Aspose.CAD.FileFormats.Cad.CadImage)image;
 
-                Aspose.CAD.FileFormats.Cad.CadLayoutDictionary layouts = cadImage.Layouts;
-                foreach (Aspose.CAD.FileFormats.Cad.CadObjects.CadLayout layout in layouts.Values)
+            using (Image img = Image.Load("sample.png"))
+            {
+                // Cast object of Image to RasterImage
+                RasterImage rasterImage = (RasterImage)img;
+
+                // Check if RasterImage is cached and Cache RasterImage for better performance
+                if (!rasterImage.IsCached)
                 {
-                    Console.WriteLine("Layout " + layout.LayoutName);
+                    rasterImage.CacheData();
                 }
+
+                // Adjust the brightness
+                rasterImage.AdjustBrightness(100);
+
+                //Adjust the contrast
+                rasterImage.AdjustContrast(50);
+
+                //Adjust gamma
+                rasterImage.AdjustGamma(2.2f, 2.2f, 2.2f);
+
+                // Create an instance of TiffOptions for the resultant image, Set various properties for the object of TiffOptions and Save the resultant image
+                PngOptions options = new PngOptions();
+                rasterImage.Save("sample_out.png", options);
             }
 ```
-What's happening there? When you load an DXF or DWG file, it is represented as an instance of a subclass of <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad/cadimage">CadImage</a>, which has specific properties related to these file formats. As such, you cast your image to CadImage to get access to them.
+As a result, the rasterImage will have all the changes at once: brightness, contrast and gamma, as the methods modify the instance they're called on. Now, how exactly do these methods work?
+<a href="https://apireference.aspose.com/net/imaging/aspose.imaging/rasterimage/methods/adjustbrightness">AdjustBrightness</a> essentially shifts brightness of all the pixels of image by stated amount, right in value codes. As our images are typically encoded in 8 bit per channel format, that means calling AdjustBrightness(-256) will make image black, and AdjustBrightness(256) will make it white regardless of whatever was there - as every code will be reduced/increased right to the minimum/maximum possible value.
+<a href="https://apireference.aspose.com/net/imaging/aspose.imaging/rasterimage/methods/adjustcontrast">AdjustContrast</a> also adjusts contrast relative to current state. The adjustment range is from -100 to 100, the absolute value is percents essentially. Albeit higher absolute values can be passed to the method, they will be rounded to -100 or 100 respectively. -100 produces uniformly colored image, +100 increases current image contrast twofold.
+<a href="https://apireference.aspose.com/net/imaging/aspose.imaging/rasterimage/methods/adjustgamma/index">AdjustGamma</a> again works relative to current state. Gamma coefficient is applied as is, i.e. input image is interpreted as being in linear space. Thus, specifying coefficient of 1.0 results in no change to image. There are two overloads, one shown sets separate gamma value per R, G and B channels, another takes one value and applies it to all channels.
 
-Then there's <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad/cadimage/properties/layouts">Layouts</a> property in CadImage, which is a specific <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad/cadlayoutdictionary">dictionary</a> for <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad.cadobjects/cadlayout">CadLayout</a> objects. Extract the CadLayout objects from it as from any <a href="https://msdn.microsoft.com/en-us/library/9dhwsays">IDictionary</a>, and here you have access to layout's properties, including its <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad.cadobjects/cadlayout/properties/layoutname">name</a>.
-
-## Selection of layout for export
-This, like any setup of export process, is done via setting up an instance of <a href="https://apireference.aspose.com/net/cad/aspose.cad/imageoptionsbase">ImageOptionsBase</a>'s descendants, such as <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/bmpoptions">BmpOptions</a>, <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/pngoptions">PngOptions</a>, <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/pdfoptions">PdfOptions</a> etc. - let's just call them image export options, more specifically in this case, by setting up an instance of <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/cadrasterizationoptions">CadRasterizationOptions</a> which is assigned to image export options's <a href="https://apireference.aspose.com/net/cad/aspose.cad/imageoptionsbase/properties/vectorrasterizationoptions">VectorRasterizationOptions</a> property.
+## Cropping an image
+For cropping, there are two essential approaches in Aspose.Imaging. First is specifying a <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/rectangle">Rectangle</a> that will be used as a boundary for cropping, and another is specifying borders - top, bottom, left and right, that will be removed from image.
 ```csharp
-            using (Aspose.CAD.Image image = Aspose.CAD.Image.Load("in.dwg"))
+            using (RasterImage rasterImage = (RasterImage)Image.Load("sample.png"))
             {
+                // Create an instance of Rectangle class with desired size,
+				// Perform the crop operation on object of 
+				// Rectangle class and Save the results to disk
+                Rectangle rectangle = new Rectangle(20, 20, 20, 20);
+                rasterImage.Crop(rectangle);
+                rasterImage.Save(dataDir + "Sample_crop.jpg");
+            }
 
-
-                // Create an instance of PdfOptions
-                Aspose.CAD.ImageOptions.PdfOptions pdfOptions = new Aspose.CAD.ImageOptions.PdfOptions();
-
-                // Create an instance of CadRasterizationOptions and set its various properties
-                Aspose.CAD.ImageOptions.CadRasterizationOptions rasterizationOptions = new Aspose.CAD.ImageOptions.CadRasterizationOptions();
-                rasterizationOptions.PageWidth = 1600;
-                rasterizationOptions.PageHeight = 1600;
-                // Specify desired layout name
-                rasterizationOptions.Layouts = new string[] { "Layout1" };
-
-
-                // Set the VectorRasterizationOptions property
-                pdfOptions.VectorRasterizationOptions = rasterizationOptions;
+            using (RasterImage rasterImage = (RasterImage)Image.Load("sample.png"))
+            {
+                // Create an instance of Rectangle class with desired size, Perform the crop operation on object of Rectangle class and Save the results to disk
                 
-
-                image.Save("out.pdf", pdfOptions);                
+				// Crop off 20-pixel-wide borders from each side
+                rasterImage.Crop(20,20,20,20);
+                rasterImage.Save(dataDir + "Sample_crop1.jpg");
             }
 ```
-As you can see, the process is the same that is outlined in <a href="https://dev.to/nnevod/introduction-to-asposecad-library-361h">Part 1</a> of this article series, the only change is use of <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/cadrasterizationoptions/properties/layouts">Layouts</a> property. Setting it will result in export of only these layouts which names are specified in Layouts property. By default it will use Model layout, so if you wish to revert to that layout, just set the property to null.
+Rectangle's Y coordinate is measured from top border of image, as typical in raster graphics.
 
-## Getting a list of layer names
-This is very similar to how it's done for layouts with only a small difference:
+## Resizing an image
+Aspose.Imaging allows resizing of an image separately for width and height, and for both of them at once, and allows specifying resizing method.
 ```csharp
-            using (Aspose.CAD.Image image = Aspose.CAD.Image.Load(sourceFilePath))
+            using (Image image = Image.Load("sample.png"))
             {
-                Aspose.CAD.FileFormats.Cad.CadImage cadImage = (Aspose.CAD.FileFormats.Cad.CadImage)image;
-
-                Aspose.CAD.FileFormats.Cad.CadLayersList layers = cadImage.Layers;
-                foreach (string layerName in layers.GetLayersNames())
+                if (!image.IsCached)
                 {
-                    Console.WriteLine("Layer " + layerName);
+                    image.CacheData();
                 }
+
+                // Specifying only height, width and ResizeType
+                int newWidth = image.Width / 2;
+                image.ResizeWidthProportionally(newWidth, ResizeType.LanczosResample);
+                int newHeight = image.Height / 2;
+                image.ResizeHeightProportionally(newHeight, ResizeType.NearestNeighbourResample);
+
+                image.Resize(newWidth * 3, newHeight * 2, ResizeType.HighQualityResample);
+
+                image.Save("samlpe_out.png");
             }
 ```
-As you can see, the only difference is that <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad/cadimage/properties/layers">Layers</a> property is not a Dictionary, but an <a href="https://apireference.aspose.com/net/cad/aspose.cad.fileformats.cad/cadlayerslist">CadLayersList</a> and it allows getting a List of layer name as strings directly. 
+<a href="https://apireference.aspose.com/net/imaging/aspose.imaging/image/methods/resizeheightproportionally/index">ResizeHeightProportionally</a> and <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/image/methods/resizewidthproportionally/index">ResizeWidthProportionally</a> take new height and width, respectively, and resize image without altering proportions. <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/image/methods/resize/index">Resize</a> doesn't retain proportions, as both height and width are provided. <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/resizetype">ResizeType</a> enumerates various possible rescale algorithms.
 
-## Selection of particular layer for export
-Again, this is very similar to working with layouts.
+## Dithering and binarization.
+Dithering is performed equally easily as most other transformations, just specify desired bit depth and dithering method:
 ```csharp
-
-
-                // Create an instance of PdfOptions
-                Aspose.CAD.ImageOptions.PdfOptions pdfOptions = new Aspose.CAD.ImageOptions.PdfOptions();
-
-                // Create an instance of CadRasterizationOptions and set its various properties
-                Aspose.CAD.ImageOptions.CadRasterizationOptions rasterizationOptions = new Aspose.CAD.ImageOptions.CadRasterizationOptions();
-                rasterizationOptions.PageWidth = 1600;
-                rasterizationOptions.PageHeight = 1600;
-                // Specify desired layout name
-				// Most of the CAD drawings have a layer by name 0, you may specify any name
-                rasterizationOptions.Layers.Add("0");
-
-
-                // Set the VectorRasterizationOptions property
-                pdfOptions.VectorRasterizationOptions = rasterizationOptions;
-                
-
-                image.Save("out.pdf", pdfOptions);   
+            using (var image = (PngImage)Image.Load("sample.png"))
+            {
+                // Peform dithering on the current image and Save the resultant image
+                image.Dither(DitheringMethod.ThresholdDithering, 4);
+                image.Save("sample_out.png");
+            }
 ```
-The difference is that <a href="https://apireference.aspose.com/net/cad/aspose.cad.imageoptions/cadrasterizationoptions/properties/layers">Layers</a> property of CadRasterizationOptions is a <a href="http://msdn2.microsoft.com/en-us/library/6sh2ey19">List</a>, and by default, when the list is empty, all layers will be exported.
+<a href="https://apireference.aspose.com/net/imaging/aspose.imaging/ditheringmethod">DitheringMethod</a> provides options for treshold dithering and Floyd-Steinberg dithering. There is also an overload that allows dithering with a custom <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/icolorpalette">palette</a>.
 
-For now, that's all, stay tuned!
+Binarization, i.e. conversion of image to black&white without dithering can be done with a custom treshold, with <a href="https://en.wikipedia.org/wiki/Otsu's_method">Otsu's method</a> and via <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.420.7883&rep=rep1&type=pdf">Bradley's method</a>. All methods are equally simple to use:
+```csharp
+            using (Image image = Image.Load("sample.png"))
+            {
+                // Cast the image to RasterCachedImage and Check if image is cached                
+                RasterCachedImage rasterCachedImage = (RasterCachedImage)image;
+                if (!rasterCachedImage.IsCached)
+                {
+                    // Cache image if not already cached
+                    rasterCachedImage.CacheData();
+                }
 
-For more examples please visit the <a href="https://github.com/aspose-cad">Aspose.CAD GitHub</a> page. There's also <a href="https://twitter.com/Asposecad">Twitter</a> and <a href="https://www.facebook.com/AsposeCAD">Facebook</a> pages for news on Aspose.CAD.
+                // Binarize image with predefined fixed threshold              
+                rasterCachedImage.BinarizeFixed(250);
+				
+                // Binarize image with Otsu Thresholding and Save the resultant image                
+                rasterCachedImage.BinarizeOtsu();
+				
+				// Define threshold value for Bradley method, Call BinarizeBradley method and pass the threshold value as paramete
+				double threshold = 0.15;
+                objimage.BinarizeBradley(threshold);
+				
+                rasterCachedImage.Save("sample.png");
+            }
+```
+This example just puts all methods into one snippet for brevity, don't try to really implement binarization that way - the result will be meaningless.
+<a href="https://apireference.aspose.com/net/imaging/aspose.imaging/rasterimage/methods/binarizefixed">BinarizeFixed</a> will set pixels with values higher than treshold to white, and others to black. <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/rasterimage/methods/binarizeotsu">BinarizeOtsu uses  <a href="https://en.wikipedia.org/wiki/Otsu's_method">Otsu's</a> method will determine treshold from image contents, trying to find optimal treshold algorithmically. <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/rasterimage/methods/binarizebradley">BinarizeBradley</a> uses <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.420.7883&rep=rep1&type=pdf">Bradley's</a> method works locally, it turns a pixel to black if it's brightness is lower than average brightness of neighbour pixels multiplied by treshold value.
+
+That's all for now, stay tuned!
+
+For more examples please visit the <a href="https://github.com/aspose-imaging">Aspose.Imaging GitHub</a> page. There's also <a href="https://twitter.com/Asposeimaging">Twitter</a> and <a href="https://www.facebook.com/AsposeImaging">Facebook</a> pages for news on Aspose.Imaging.
+
