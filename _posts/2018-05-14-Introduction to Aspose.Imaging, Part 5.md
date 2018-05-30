@@ -6,14 +6,15 @@ tags: csharp, image, raster, convert
 
 In this article on <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a>, I'll, tell about use of automatic grayscaling feature, which I've forgot to include in previous articles, and most importantly, how to work with XMP metadata in Aspose.Imaging.
 
+Here are the previous articles:
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-8jd">Part 1</a>
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging/">Part 1</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-part-2-40p">Part 2</a>
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging,-Part-2/">Part 2</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-part-3-3ah3">Part 3</a>
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging,-Part-3/">Part 3</a>
 
-<a href="https://dev.to/nnevod/introduction-to-asposeimaging-part-4-2o1j">Part 4</a>
+<a href="https://asposeimaging.github.io/Introduction-to-Aspose.Imaging,-Part-4/">Part 4</a>
 
 
 ## Grayscaling
