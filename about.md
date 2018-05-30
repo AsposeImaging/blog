@@ -4,12 +4,14 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Aspose.Imaging is an advanced image processing API that allows the developers to create, edit, draw or convert images in their .NET and Java applications and within Sharepoint. 
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+Aspose.Imaging works independent of other applications, and allows saving to Adobe PhotoShop® native format without having PhotoShop application or any other image editor installed on the machine.
+
+Aspose.Imaging for .NET is flexible, stable and powerful API that is capable of processing most commonly used image formats along with some special formats such as DjVu, DICOM, WebP & DNG. Moreover, it extends the native support for image formats & image processing functions for .NET and Silverlight.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[Our support forums](https://forum.aspose.com/)
