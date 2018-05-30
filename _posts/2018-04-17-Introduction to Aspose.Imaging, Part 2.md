@@ -4,9 +4,10 @@ layout: post
 tags: csharp, raster, image, convert
 ---
 
+In this part I continue to write about more generic features of <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a>
+
 <a href="https://dev.to/nnevod/introduction-to-asposeimaging-8jd">Part 1</a>
 
-In this part I continue to write about more generic features of <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a>
 
 ## Drawing an image onto another image
 The aforementioned <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/graphics">Graphics</a> class also could be used to insert one <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/image">Image</a> into another. It can be used to insert signature or watermark into image. This example shows how straightforward it is to do.
