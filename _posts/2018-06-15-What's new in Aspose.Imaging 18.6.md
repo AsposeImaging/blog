@@ -1,4 +1,8 @@
-
+---
+title: What's new in Aspose.Imaging 18.6
+layout: post
+tags: csharp, raster, image, convert
+---
 
 A new version of Aspose.Imaging is released, designated 18.6. Here are the most important changes:
 
