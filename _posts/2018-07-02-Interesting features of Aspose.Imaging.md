@@ -1,3 +1,9 @@
+---
+title: Interesting features of Aspose.Imaging
+layout: post
+tags: csharp, raster, image, convert
+---
+
 Hello, in this article I'm going to list what distinguishes Aspose.Imaging from other similar software and generally about it's interesting features.
 
 ## Unified API for .Net above 2.0 and Java
