@@ -4,7 +4,7 @@ layout: post
 tags: csharp, raster, image, convert
 ---
 
-Hello, in this article I'm going to list what distinguishes Aspose.Imaging from other similar software and generally about it's interesting features.
+Hello, in this article I'm going to list what distinguishes <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a> from other similar software and generally about it's interesting features.
 
 ## Unified API for .Net above 2.0 and Java
 Aspose.Imaging is built for .Net and Java from single source and hence both versions are identical and have the same API. The documentation for API is availible for both versions at <a href="https://apireference.aspose.com/"></a> and is styled according to convention of .Net and Java ecosystems respectively. There's no difference other than styling. Note that in this and other articles I refer to .Net version of docs.
