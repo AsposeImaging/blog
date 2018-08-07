@@ -15,6 +15,29 @@ There is a public REST API service that allows you to use Aspose.Imaging, upload
 ## ICC color profile support
 Aspose.Imaging can convert images using the a specified color profile. Color profiles are supported for TIFF, PSD and JPEG images (when YCCK or CMYK color mode is used).  an example on using color profiles for TIFF images cam be found in the <a href="https://asposeimaging.github.io/Converting-RGB-TIFF-to-CMYK-TIFF-with-Aspose.Imaging-18.3/">Converting RGB TIFF to CMYK TIFF with Aspose.Imaging 18.3</a> article.
 
+### Grayscale ICC profile support
+Grayscale ICC profile can be accessed via GrayColorProfile property of PsdImage. See the example:
+```csharp
+	using (PsdImage psdImage = (PsdImage)Image.Load("gray-d15.psd"))
+	{
+		//StreamSource cmykProfile = psdImage.CmykColorProfile;
+		//StreamSource rgbProfile = psdImage.RgbColorProfile;
+		StreamSource grayProfile = psdImage.GrayColorProfile;
+
+		// Save to grayscale TIFF
+		TiffOptions saveOptions = new TiffOptions(TiffExpectedFormat.Default);
+		saveOptions.Photometric = TiffPhotometrics.MinIsBlack;
+		saveOptions.BitsPerSample = new ushort[] { 8 };
+
+		// No ICC profile
+		psdImage.Save("gray-d15.psd.noprofile.tif", saveOptions);
+
+		// Embed ICC profile
+		saveOptions.IccProfile = ToMemoryStream(grayProfile);
+		psdImage.Save("gray-d15.psd.tif", saveOptions);
+	}
+```
+
 ## Multithreading support.
 All images loaded by Aspose.Imaging are independent instances and can be processed concurrently without problems. Though, manipulation with a single image should happen only within one thread.
 
@@ -102,9 +125,72 @@ These are rarely implemented compression method for JPEG files. Aspose.Imaging a
 ### Jpeg2000 support.
 This is also a rarely supported format. Aspose.Imaging supports both import and export of Jpeg2000 images. As  any other output format, it can be selected for export by creating <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.imageoptions/jpeg2000options">Jpeg2000Options</a> instance and passing it to <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/image/methods/save/index">Image.Save()</a> method.
 
+### Support of exporting EMF images
+EMF images can be exported by Aspose.Imaging. See example on how to work with them:
+```csharp
+public void TestSaveEmf()
+{
+    var path = @"TestEmfBezier.emf";
+    using (var image = (MetaImage)Image.Load(path))
+    {
+        image.Save(path + ".emf", new EmfOptions());
+    }
+}
+
+public void TestSaveEmfPlus()
+{
+    var path = @"TestEmfPlusFigures.emf";
+    using (var image = (MetaImage)Image.Load(path))
+    {
+        image.Save(path + ".emf", new EmfOptions());
+    }
+}
+
+public void TestSaveEmfGraphics()
+{
+    EmfRecorderGraphics2D graphics = new EmfRecorderGraphics2D(
+        new Rectangle(0, 0, 5000, 5000),
+        new Size(5000, 5000),
+        new Size(1000, 1000));
+    {
+        Font font = new Font("Arial", 10, FontStyle.Bold | FontStyle.Underline);
+        graphics.DrawString(font.Name + " " + font.Size + " " + font.Style.ToString(), font, Color.Brown, 10, 10);
+        graphics.DrawString("some text", font, Color.Brown, 10, 30);
+
+        font = new Font("Arial", 24, FontStyle.Italic | FontStyle.Strikeout);
+        graphics.DrawString(font.Name + " " + font.Size + " " + font.Style.ToString(), font, Color.Brown, 20, 50);
+        graphics.DrawString("some text", font, Color.Brown, 20, 80);
+
+        using (EmfImage image = graphics.EndRecording())
+        {
+            var path = @"Fonts.emf";
+            image.Save(path, new EmfOptions());
+        }
+    }
+}
+```
+
 ### Specific image format support optimisations
 Aspose.Imaging supports lossy GIF for reducing GIF image size.
 For JPEG, rate-distortion optimisation is used to optimise image quality during compression.
+
+### Locking layers in PSD files
+Just like in Photoshop, you can lock layers in Aspose.Imaging. See the example:
+```csharp
+string sourceFile = "layerLock.psd";
+string outputFile = "result.psd";
+using (PsdImage image = (PsdImage)Image.Load(sourceFile))
+                {
+                    Layer[] layers = image.Layers;
+                    layers[4].LayerLock = LayerLockType.LockAll;
+                    layers[2].LayerLock = LayerLockType.None;
+                    layers[3].LayerLock = LayerLockType.LockTransparentPixels;
+                    layers[1].LayerLock = LayerLockType.LockImagePixels;
+                    layers[5].LayerLock = LayerLockType.LockPosition;
+                    layers[5].Flags = LayerFlags.TransparencyProtected;
+                    image.Save(outputFile);
+                }
+```
 
 ## Coming soon
 
