@@ -1,7 +1,7 @@
 ---
 title: Working with ICC profiles in Aspose.Imaging
 layout: post
-tags: csharp, raster, image, convert
+tags: csharp, raster, image, ICC
 ---
 
 <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a> supports retrieving, applying and storing ICC color profiles for PSD and JPEG images, and can embed color profiles when exporting TIFF images. For other formats, embedded color profiles are processed when loading image, but are not availible for manipulation as of v18.7. In this article I'll show how to work with ICC profiles for JPEG, PSD and TIFF.
