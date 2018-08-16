@@ -44,12 +44,30 @@ private static void SaveSourceToFile(StreamSource source, string filename)
 
 In case of TIFF files, color profiles are applied during saving of the image, and are provided in <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.imageoptions/tiffoptions/properties/iccprofile">IccProfile</a> property of <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.imageoptions/tiffoptions/">TiffOptions</a>'s instance as an instance of <a href="https://docs.microsoft.com/en-us/dotnet/api/system.io.memorystream?redirectedfrom=MSDN&view=netframework-4.7.2">MemoryStream</a>. Here are methods to convert <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.sources/streamsource/">StreamSource</a> to MemoryStream and to load a file into MemoryStream:
 ```csharp
-        private static MemoryStream FileToMemoryStream(string filename)
-        {
-            MemoryStream memory = new MemoryStream(File.ReadAllBytes(filename));
-            memory.Seek(0, System.IO.SeekOrigin.Begin);
-            return memory;
-        }
+private static MemoryStream FileToMemoryStream(string filename)
+{
+    MemoryStream memory = new MemoryStream(File.ReadAllBytes(filename));
+    memory.Seek(0, System.IO.SeekOrigin.Begin);
+    return memory;
+}
+
+private static MemoryStream SourceToMemoryStream(StreamSource streamSource)
+{
+    Stream srcStream = streamSource.Stream;
+    MemoryStream dstStream = new MemoryStream();
+
+    int byteCount;
+    byte[] buffer = new byte[1024];
+    long pos = srcStream.Position;
+    srcStream.Seek(0, System.IO.SeekOrigin.Begin);
+    while ((byteCount = srcStream.Read(buffer, 0, buffer.Length)) > 0)
+    {
+        dstStream.Write(buffer, 0, byteCount);
+    }
+
+    srcStream.Seek(pos, System.IO.SeekOrigin.Begin);
+    return dstStream;
+}
 ```
 
 
@@ -107,7 +125,7 @@ using(PsdImage psdImage = (PsdImage)Image.load(sourcePath, loadOptions))
 ```
 
 ### Color profiles in JPEG
-<a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.jpeg/jpegimage/">JpegImage</a> contains four properties related to color profiles. <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.jpeg/jpegimage/properties/rgbcolorprofile">RgbColorProfile</a> and <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.jpeg/jpegimage/properties/cmykcolorprofile">CmykColorProfile</a>, likewise to PSD, are used for CMYK and YCCK JPEG images when loading the image. <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.jpeg/jpegimage/properties/destinationcmykcolorprofile">DestinationCmykColorProfile</a> and <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.jpeg/jpegimage/properties/destinationrgbcolorprofile">DestinationRgbColorProfile</a> are applied when a JpegImage is saved, and should be paired with opponent profile - i.e. when using DestinationCmykColorProfile RgbColorProfile should be set to a corresponding profile, and when using DestinationRgbColorProfile CmykColorProfile should be set to a corresponding profile too.
+<a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.jpeg/jpegimage/">JpegImage</a> contains four properties related to color profiles. <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.jpeg/jpegimage/properties/rgbcolorprofile">RgbColorProfile</a> and <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.jpeg/jpegimage/properties/cmykcolorprofile">CmykColorProfile</a>, likewise to PSD, are used for CMYK and YCCK JPEG images when loading the image. <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.jpeg/jpegimage/properties/destinationcmykcolorprofile">DestinationCmykColorProfile</a> and <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.jpeg/jpegimage/properties/destinationrgbcolorprofile">DestinationRgbColorProfile</a> are applied when a JpegImage is saved, and should be paired with opponent profile - i.e. when using DestinationCmykColorProfile, RgbColorProfile should be set to a corresponding profile, and when using DestinationRgbColorProfile, CmykColorProfile should be set to a corresponding profile too.
 Here is an example that shows use of profiles when loading image:
 ```csharp
 using (JpegImage image = (JpegImage)Image.Load("image.jpg"))
