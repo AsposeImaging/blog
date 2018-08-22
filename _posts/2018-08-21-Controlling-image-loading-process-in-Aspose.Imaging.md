@@ -1,5 +1,5 @@
 ---
-title: Working with ICC profiles in Aspose.Imaging
+title: Controlling image loading process in Aspose.Imaging
 layout: post
 tags: csharp, raster, image, load
 ---
