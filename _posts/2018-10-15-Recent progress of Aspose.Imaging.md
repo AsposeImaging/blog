@@ -1,3 +1,9 @@
+---
+title: Recent progress of Aspose.Imaging
+layout: post
+tags: csharp, raster, image, create
+---
+
 In this article I'll tell about recent notable improvements of <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a>.
 
 ### Fixed saving Baseline JPEG to Progressive.
