@@ -1,3 +1,9 @@
+---
+title: Clarifying working with TIFF in Aspose.Imaging
+layout: post
+tags: csharp, tiff, image, create
+---
+
 <a href="https://products.aspose.com/imaging/">Aspose.Imaging</a> uses <a href="https://apireference.aspose.com/net/imaging/aspose.imaging/imageoptionsbase">ImageOptionsBase</a>-based objects to set up file formats when saving or creating images. TIFF format, as such, is configured via instances of <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.imageoptions/tiffoptions/">TiffOptions</a> class. As I've noted in <a href="https://asposeimaging.github.io/Clarifying-working-with-TIFF-in-Aspose.Imaging/">previous</a> article, TiffOptions can also be read from loaded image, so you can get information about format's settings for the particular file. Most of the properties of TiffOptions apply to indivitual <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.tiff/tiffframe">TiffFrames</a>, with only few properties related to <a href="https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.tiff/tiffimage">TiffImage</a> as a collection of TiffFrames. Given multi-image nature of TIFF, I will refer to whole TIFF, represented as TiffImage as "file", and to individual images within, represented as TiffFrame, as "image" or "page".
 
 TiffOptions provides facility to set up TIFF file format as you need. Most of the often used options are supported explicitly and are availible as properties. Changes applied to them will result in according processing of the image data, if needed. TiffOptions also provides a way of working directly with TIFF tags, so anything not explicitly supported by Aspose.Imaging can also be worked upon. 
